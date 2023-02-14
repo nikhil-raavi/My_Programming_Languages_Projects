@@ -1,0 +1,7 @@
+# this file contains multiple simple declarations
+
+var _some_var1 : number;
+
+var _some_2OtherVar23 :
+  string;
+  

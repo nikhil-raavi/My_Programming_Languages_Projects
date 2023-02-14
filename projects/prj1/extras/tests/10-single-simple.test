@@ -1,0 +1,3 @@
+#simple single declaration
+
+var variable: number ;

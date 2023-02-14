@@ -1,0 +1,21 @@
+var single22: number;
+
+var
+single33
+:
+string #some comment
+#another comment
+  ;
+
+var nested_23 : record
+  triangle: record  #3 points
+    point1: record x: number; y: number; end;
+    point2: record x: number; y: number; end;
+    point3: record x: number; y: number; end;
+  end;
+  color: record #RGB components
+    r: number; g: number; b: number;
+  end;
+  index: number;
+  pos: record x: number; y: number; end;
+end;

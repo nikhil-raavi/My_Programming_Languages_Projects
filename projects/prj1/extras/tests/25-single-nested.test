@@ -1,0 +1,11 @@
+var personPosition : record
+  name: record
+    firstName: string;
+    lastName: string;
+  end;
+  position: record
+    x: number;
+    y: number;
+    z: number;
+  end;
+end;

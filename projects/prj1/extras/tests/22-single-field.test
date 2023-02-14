@@ -1,0 +1,7 @@
+# this file contains a single declaration using a record with a single field
+
+var singleFieldRec :
+  record
+    field: string;
+  end;
+    

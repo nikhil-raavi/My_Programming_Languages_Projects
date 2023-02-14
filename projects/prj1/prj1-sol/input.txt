@@ -1,0 +1,9 @@
+# this file contains a single declaration using a non-nested record
+
+var point3D :
+  record
+    x: number;
+    y: number;
+    z: number;
+  end;
+    

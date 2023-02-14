@@ -1,0 +1,109 @@
+# empty input
+$ echo '  ' | ./decls.sh
+[]
+
+# simple single declaration with comment
+$ echo 'var a: number ; #comment  ' | ./decls.sh
+[["a","number"]]
+
+# multiple declarations and comment
+# decls.sh will read from stdin until EOF indicated by ^D on the terminal
+$ ./decls.sh
+var n :
+  number;
+var s: string;
+# type control-d to indicate EOF
+[["n","number"],["s","string"]]
+
+# simple record declaration
+$ ./decls.sh
+var rec: record
+  n: number;
+  str: string;
+end;
+[["rec",[["n","number"],["str","string"]]]]
+
+# multiple declarations
+$ ./decls.sh
+var some_str123 :
+  # some comment
+  # yet another comment
+  string
+;
+
+var n87 : # number;
+  number;
+
+var s: record
+  s: string;
+  r : record x: number; y: number; end;
+end;
+[["some_str123","string"],["n87","number"],["s",[["s","string"],["r",[["x","number"],["y","number"]]]]]]
+
+# repeat previous input, but pipe output through jq . to pretty-print output
+# (jq is a program for querying json, do 'man jq' for details)
+$ ./decls.sh | jq .
+var some_str123 :
+  # some comment
+  # yet another comment
+  string
+;
+
+var n87 : # number;
+  number;
+
+var s: record
+  s: string;
+  r : record x: number; y: number; end;
+end;
+[
+  [
+    "some_str123",
+    "string"
+  ],
+  [
+    "n87",
+    "number"
+  ],
+  [
+    "s",
+    [
+      [
+        "s",
+        "string"
+      ],
+      [
+        "r",
+        [
+          [
+            "x",
+            "number"
+          ],
+          [
+            "y",
+            "number"
+          ]
+        ]
+      ]
+    ]
+  ]
+]
+
+# error: using reserved word as identifier
+$ ./decls.sh
+var record: number;
+error: expecting 'ID' but got 'RECORD'
+var record: number;
+    ^
+
+# error: empty record
+$ ./decls.sh
+var num : number;
+
+var struct : record
+end;
+error: expecting 'ID' but got 'END'
+
+end;
+ ^
+$

@@ -1,0 +1,1 @@
+var z : record x: string1; end;

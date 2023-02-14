@@ -1,0 +1,37 @@
+[
+   [
+      "personPosition",
+      [
+         [
+            "name",
+            [
+               [
+                  "firstName",
+                  "string"
+               ],
+               [
+                  "lastName",
+                  "string"
+               ]
+            ]
+         ],
+         [
+            "position",
+            [
+               [
+                  "x",
+                  "number"
+               ],
+               [
+                  "y",
+                  "number"
+               ],
+               [
+                  "z",
+                  "number"
+               ]
+            ]
+         ]
+      ]
+   ]
+]
