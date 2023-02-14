@@ -1,5 +1,4 @@
 const fs = require('fs');
-var prompt = require("prompt");
 
 function parse(inp) {
   let tokens = inp.match(/\b\w+\b|[{};:^#]/g);

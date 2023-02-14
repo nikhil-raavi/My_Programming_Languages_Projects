@@ -1,6 +1,11 @@
-Name:		XXX
-B-Number:	XXX
-Email:		XXX
+Name:		SAI NIKHIL RAVI
+B-Number:	B00979061
+Email:		sravi3@binghamton.edu
 
-Add text here as needed.
+How to run?
+1.Paste your test case in input.txt file 
+2.Go to the directory where par.js exists
+3.Run the code by the command 'node par.js'
+
+Thank you!
 
