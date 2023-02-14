@@ -12,7 +12,7 @@ function parse(inp) {
       let varName = tokens[pos];
       if (varName === 'number' || varName === 'string' || varName === 'record') {
         throw new Error(`Error: expecting 'id' but got '${varName}'`);
-      }
+      } 
       pos += 1;
       if (tokens[pos] === ':') {
         pos += 1;
