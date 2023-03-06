@@ -80,6 +80,12 @@
 ;;optional category is not specified, return total of n-units
 ;;of all items.
 ;;cannot use explicit recursion
-(defn item-category-n-units 
+(defn item-category-n-units
   "return sum of :n-units of items for category (all categories if unspecified)"
-  ([items] (reduce (fn [total item] (+ total (:n-units item)))))) 
+  ([items] (item-category-n-units items :all))
+  ([items category]
+   (reduce +
+           (for [item items
+                 :when (or (= category :all) (= (:category item) category))]
+             (:n-units item)))))
+
