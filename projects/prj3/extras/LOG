@@ -1,0 +1,56 @@
+$ prolog
+...
+?- ['prj3-sol.pro'].
+true.
+
+%% show order items data
+?- order_items(Items).
+Items = [order_item(cw123, cookware, 3, 12.5), order_item(cw126, cookware, 2, 11.5), order_item(ap723, apparel, 2, 10.5), order_item(cw127, cookware, 1, 9.99), order_item(ap273, apparel, 3, 21.5), order_item(fd825, food, 1, 2.48)].
+
+%% run items_total1.
+?- order_items(Items), items_total1(Items, Total).
+Items = [order_item(cw123, cookware, 3, 12.5), order_item(cw126, cookware, 2, 11.5), order_item(ap723, apparel, 2, 10.5), order_item(cw127, cookware, 1, 9.99), order_item(ap273, apparel, 3, 21.5), order_item(fd825, food, 1, 2.48)],
+Total = 158.47.
+
+%% run items_total2 on cookery items
+?- cookware_items(Items), items_total2(Items, Total).
+Items = [order_item(cw123, cookware, 3, 12.5), order_item(cw126, cookware, 2, 11.5), order_item(cw127, cookware, 1, 9.99)],
+Total = 70.49.
+
+%% run items_with_category.
+?- order_items(Items), items_with_category(Items, food, CategoryItems).
+Items = [order_item(cw123, cookware, 3, 12.5), order_item(cw126, cookware, 2, 11.5), order_item(ap723, apparel, 2, 10.5), order_item(cw127, cookware, 1, 9.99), order_item(ap273, apparel, 3, 21.5), order_item(fd825, food, 1, 2.48)],
+CategoryItems = [order_item(fd825, food, 1, 2.48)] ;
+false.
+
+% SKUs of items with unit-price > 11.
+?- order_items(Items), expensive_item_skus(Items, 11, XItems).
+Items = [order_item(cw123, cookware, 3, 12.5), order_item(cw126, cookware, 2, 11.5), order_item(ap723, apparel, 2, 10.5), order_item(cw127, cookware, 1, 9.99), order_item(ap273, apparel, 3, 21.5), order_item(fd825, food, 1, 2.48)],
+XItems = [cw123, cw126, ap273] ;
+false.
+
+% backtrack through items with unit-price > 11.
+?- order_items(Items), expensive_item_sku(Items, 11, SKU).
+Items = [order_item(cw123, cookware, 3, 12.5), order_item(cw126, cookware, 2, 11.5), order_item(ap723, apparel, 2, 10.5), order_item(cw127, cookware, 1, 9.99), order_item(ap273, apparel, 3, 21.5), order_item(fd825, food, 1, 2.48)],
+SKU = cw123 ;
+Items = [order_item(cw123, cookware, 3, 12.5), order_item(cw126, cookware, 2, 11.5), order_item(ap723, apparel, 2, 10.5), order_item(cw127, cookware, 1, 9.99), order_item(ap273, apparel, 3, 21.5), order_item(fd825, food, 1, 2.48)],
+SKU = cw126 ;
+Items = [order_item(cw123, cookware, 3, 12.5), order_item(cw126, cookware, 2, 11.5), order_item(ap723, apparel, 2, 10.5), order_item(cw127, cookware, 1, 9.99), order_item(ap273, apparel, 3, 21.5), order_item(fd825, food, 1, 2.48)],
+SKU = ap273 ;
+false.
+
+% run left_plus (note that [] is atomic).
+?- left_plus((1+a)+(2 + ([] + c)), Z).
+Z = 1+a+2+[]+c ;
+false.
+
+% check left_plus (note redundant paren in second argument).
+?- left_plus(1 + (2 + 3), (1 + 2) + 3).
+true ;
+false.
+
+?- left_plus(1 + (2 + 3), 1 + (2 + 3)).
+false.
+
+?- halt.
+$ 
